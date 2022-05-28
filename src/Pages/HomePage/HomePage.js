@@ -4,7 +4,8 @@
  * Copyright (c) 2022 by Qunar, All Rights Reserved.
  */
 import React, {useLayoutEffect} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {Image} from '@rneui/themed';
 
 const HomePage = ({navigation}) => {
   useLayoutEffect(() => {
@@ -13,14 +14,31 @@ const HomePage = ({navigation}) => {
       headerLeft: () => (
         <View style={styles.headerBar}>
           <Text style={styles.headerTitle}>首页</Text>
-          <Image source={require('../../asset/home/rectangle.png')} />
+          <Image
+            style={styles.titleIcon}
+            source={require('../../asset/home/rectangle.png')} 
+          />
         </View>
       ),
       headerRight: () => (
         <View style={styles.headerBarRight}>
-          <Image source={require('../../asset/home/search.png')} />
-          <Image source={require('../../asset/home/wrong.png')} />
-          <Image source={require('../../asset/home/message.png')} />
+          <Image
+            style={styles.headerBarRightIcon}
+            source={require('../../asset/home/search.png')}
+            onPress={() => {
+              console.log('点击搜搜');
+            }}
+          />
+          <Image
+            style={styles.headerBarRightIcon}
+            source={require('../../asset/home/wrong.png')}
+            onPress={() => {}}
+          />
+          <Image
+            style={styles.headerBarRightIcon}
+            source={require('../../asset/home/message.png')}
+            onPress={() => {}}
+          />
         </View>
       ),
     });
@@ -40,9 +58,17 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 4,
   },
+  titleIcon: {
+    width: 20,
+    height: 4
+  },
   headerBarRight: {
     width: 96,
     flexDirection: 'row',
-    justifyContent:'space-between'
-  }
+    justifyContent: 'space-between',
+  },
+  headerBarRightIcon: {
+    width: 24,
+    height: 24,
+  },
 });
