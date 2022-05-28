@@ -49,11 +49,18 @@ const App = () => {
       <Tab.Navigator
         screenOptions={({route}) => ({
           headerShown: false,
-          tabBarIcon: ({}) => {
+          tabBarIcon: ({focused}) => {
+            const homeIcon = focused
+              ? require('./src/asset/tabicon/homeselected.png')
+              : require('./src/asset/tabicon/homeunselected.png');
+            const mineIcon = focused
+              ? require('./src/asset/tabicon/mineselected.png')
+              : require('./src/asset/tabicon/mineunselected.png');
             const icons = {
-              Home: require('./src/asset/tabicon/homeselected.png'),
-              Mine: require('./src/asset/tabicon/mineselected.png'),
+              Home: homeIcon,
+              Mine: mineIcon,
             };
+            // console.log('option:', option);
             return (
               <Image
                 source={icons[route.name]}
@@ -61,6 +68,8 @@ const App = () => {
               />
             );
           },
+          tabBarActiveTintColor: '#13A8F5',
+          tabBarInactiveTintColor: 'black',
         })}>
         <Tab.Screen
           name="Home"
